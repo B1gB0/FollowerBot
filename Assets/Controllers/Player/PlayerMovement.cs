@@ -1,38 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Player : MonoBehaviour
+[RequireComponent(typeof(PlayerCameraRotation))]
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private float _speed = 3f;
     [SerializeField] private float _strafeSpeed = 3f;
     [SerializeField] private float _gravityFactor = 2f;
-    [SerializeField] private float _horizontalTurnSensitivity;
-    [SerializeField] private float _verticalTurnSensitivity = 10f;
-    [SerializeField] private float _verticalMinAngle = -89f;
-    [SerializeField] private float _verticalMaxAngle = 89f;
     [SerializeField] private float _jumpSpeed;
+    [SerializeField] private float _speed = 3f;
 
-    private Vector3 _verticalVelocity;
-    private Transform _transform;
     private CharacterController _characterController;
+    private PlayerCameraRotation _playerCameraRotation;
+    private Vector3 _verticalVelocity;
 
-    private float _cameraAngle = 0f;
-    private string _cameraDirectionX = "Mouse X";
-    private string _cameraDirectionY = "Mouse Y";
-    private string _movementDirectionX = "Horizontal";
-    private string _movementDirectionY = "Vertical";
+    public PlayerCameraRotation PlayerCameraRotation => _playerCameraRotation;
 
     private void Awake()
     {
-        _transform = transform;
         _characterController = GetComponent<CharacterController>();
-        _cameraAngle = _cameraTransform.localEulerAngles.x;
-    }
-
-    private void Update()
-    {
-        Movement();
+        _playerCameraRotation = GetComponent<PlayerCameraRotation>();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -51,22 +39,16 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, Vector3.right + Vector3.forward + Vector3.up * character.height);
     }
 
-    private void Movement()
+    public void Move(float directionX, float directionY)
     {
-        Vector3 forward = Vector3.ProjectOnPlane(_cameraTransform.forward, Vector3.up).normalized;
-        Vector3 right = Vector3.ProjectOnPlane(_cameraTransform.right, Vector3.up).normalized;
-
-        _cameraAngle -= Input.GetAxis(_cameraDirectionY) * _verticalTurnSensitivity;
-        _cameraAngle = Mathf.Clamp(_cameraAngle, _verticalMinAngle, _verticalMaxAngle);
-        _cameraTransform.localEulerAngles = Vector3.right * _cameraAngle;
-
-        _transform.Rotate(Vector3.up * _horizontalTurnSensitivity * Input.GetAxis(_cameraDirectionX));
+        Vector3 forward = Vector3.ProjectOnPlane(_playerCameraRotation.CameraTransform.forward, Vector3.up).normalized;
+        Vector3 right = Vector3.ProjectOnPlane(_playerCameraRotation.CameraTransform.right, Vector3.up).normalized;
 
         if (_characterController != null)
         {
-            Vector3 playerSpeed = 
-            forward * Input.GetAxis(_movementDirectionY) * _speed + 
-            right * Input.GetAxis(_movementDirectionX) * _strafeSpeed;
+            Vector3 playerSpeed =
+            forward * directionY * _speed +
+            right * directionX * _strafeSpeed;
 
             if (_characterController.isGrounded)
             {

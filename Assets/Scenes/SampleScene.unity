@@ -1781,7 +1781,9 @@ GameObject:
   - component: {fileID: 653817075}
   - component: {fileID: 653817074}
   - component: {fileID: 653817073}
-  - component: {fileID: 653817072}
+  - component: {fileID: 653817080}
+  - component: {fileID: 653817079}
+  - component: {fileID: 653817078}
   m_Layer: 0
   m_Name: RigidbodyBot
   m_TagString: Untagged
@@ -1789,20 +1791,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &653817072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653817071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50ff8819f62960419b057f8112569b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _target: {fileID: 893810839}
 --- !u!54 &653817073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1898,6 +1886,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &653817078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653817071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a97c371d924e0a47bfb981387b92d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 8
+--- !u!114 &653817079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653817071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885366b81d833a04db51c4de7876620e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 893810839}
+--- !u!114 &653817080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653817071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50ff8819f62960419b057f8112569b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,6 +2029,9 @@ GameObject:
   - component: {fileID: 893810839}
   - component: {fileID: 893810838}
   - component: {fileID: 893810837}
+  - component: {fileID: 893810842}
+  - component: {fileID: 893810841}
+  - component: {fileID: 893810840}
   m_Layer: 0
   m_Name: Player - CC
   m_TagString: Untagged
@@ -2022,15 +2051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc73cf21bc596f543b98aefa83a7c012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraTransform: {fileID: 963194228}
-  _speed: 8
-  _strafeSpeed: 7
-  _gravityFactor: 2
-  _horizontalTurnSensitivity: 7
-  _verticalTurnSensitivity: 10
-  _verticalMinAngle: -89
-  _verticalMaxAngle: 89
-  _jumpSpeed: 9
 --- !u!143 &893810838
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2065,6 +2085,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &893810840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893810836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d138c27f2d7d1b9429ef6da681543011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strafeSpeed: 7
+  _gravityFactor: 2
+  _jumpSpeed: 9
+  _speed: 8
+--- !u!114 &893810841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893810836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66ac72dec0f8254190aecce09e831cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraTransform: {fileID: 963194228}
+  _horizontalTurnSensitivity: 7
+  _verticalTurnSensitivity: 10
+  _verticalMinAngle: -89
+  _verticalMaxAngle: 89
+--- !u!114 &893810842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893810836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f099f7cff9f964ca83c2cac30ff4b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
