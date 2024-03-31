@@ -1,26 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerCameraRotation))]
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Transform _cameraTransform;
     [SerializeField] private float _strafeSpeed = 3f;
     [SerializeField] private float _gravityFactor = 2f;
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private float _speed = 3f;
 
     private CharacterController _characterController;
-    private PlayerCameraRotation _playerCameraRotation;
     private Vector3 _verticalVelocity;
-
-    public PlayerCameraRotation PlayerCameraRotation => _playerCameraRotation;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        _playerCameraRotation = GetComponent<PlayerCameraRotation>();
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -41,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float directionX, float directionY)
     {
-        Vector3 forward = Vector3.ProjectOnPlane(_playerCameraRotation.CameraTransform.forward, Vector3.up).normalized;
-        Vector3 right = Vector3.ProjectOnPlane(_playerCameraRotation.CameraTransform.right, Vector3.up).normalized;
+        Vector3 forward = Vector3.ProjectOnPlane(_cameraTransform.forward, Vector3.up).normalized;
+        Vector3 right = Vector3.ProjectOnPlane(_cameraTransform.right, Vector3.up).normalized;
 
         if (_characterController != null)
         {

@@ -12,6 +12,6 @@ public class Bot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _movement.MoveBotToDistance();
+        _movement.MoveToDistance();
     }
 }

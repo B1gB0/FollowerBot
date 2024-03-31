@@ -1,28 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(DirectionTarget))]
 public class BotMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private Transform _target;
 
-    private DirectionTarget _directionTarget;
     private float _distance = 5f;
     private Rigidbody _rigidbody;
+    private Vector3 _directionTarget;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _directionTarget = GetComponent<DirectionTarget>();
     }
 
-    public void MoveBotToDistance()
+    public void MoveToDistance()
     {
-        if (Vector3.Distance(transform.position, _directionTarget.Target.position) > _distance)
+        if (Vector3.Distance(transform.position, _target.position) > _distance)
         {
-            Move(_directionTarget.CalculateDirection());
+            Move();
         }
         else
         {
@@ -30,10 +27,20 @@ public class BotMovement : MonoBehaviour
         }
     }
 
-    private void Move(Vector3 directionTarget)
+    private Vector3 CalculateDirectionToTarget()
     {
-        Vector3 speed = new Vector3(directionTarget.x * _speed,
-        _rigidbody.velocity.y, directionTarget.z);
+        _directionTarget = _target.position - transform.position;
+        _directionTarget = _directionTarget.normalized;
+
+        return _directionTarget;
+    }
+
+    private void Move()
+    {
+        CalculateDirectionToTarget();
+
+        Vector3 speed = new Vector3(_directionTarget.x * _speed,
+        _rigidbody.velocity.y, _directionTarget.z);
 
         _rigidbody.velocity = speed;
         _rigidbody.velocity += Vector3.down;

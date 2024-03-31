@@ -1782,7 +1782,6 @@ GameObject:
   - component: {fileID: 653817074}
   - component: {fileID: 653817073}
   - component: {fileID: 653817080}
-  - component: {fileID: 653817079}
   - component: {fileID: 653817078}
   m_Layer: 0
   m_Name: RigidbodyBot
@@ -1899,18 +1898,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
---- !u!114 &653817079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653817071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885366b81d833a04db51c4de7876620e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _target: {fileID: 893810839}
 --- !u!114 &653817080
 MonoBehaviour:
@@ -2097,6 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d138c27f2d7d1b9429ef6da681543011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraTransform: {fileID: 963194228}
   _strafeSpeed: 7
   _gravityFactor: 2
   _jumpSpeed: 9
